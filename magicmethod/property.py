@@ -12,10 +12,47 @@ class Rectangle(object):
 
     size = property(getSize, setSize)
 
-r = Rectangle()
-r.width = 10
-r.height = 5
-print r.size
+    def __setattr__(self, key, value):
+        if key == 'size':
+            self.size = value
+        else:
+            self.__dict__[key] = value
 
-r.size = 150, 100
-print r.width
+    # def __getattr__(self, item):
+    #     if item == 'size':
+    #         return self.size
+    #     else:
+    #         raise ValueError
+
+# r = Rectangle()
+# r.box = 'abc'
+# print r.__dict__['box']
+#
+# print r.copy
+
+def flatten(nested):
+
+    for sublist in nested:
+        for element in sublist:
+            yield element
+
+nested = [[1, 2], [3, 4], [5]]
+for num in flatten(nested):
+    print num
+
+square = [ x*x for x in range(1,10)]
+print square
+
+g = ( x*x for x in range(1, 10))
+print g.next()
+print g.next()
+print g.next()
+print g.next()
+print g.next()
+print g.next()
+print g.next()
+print g.next()
+print g.next()
+print g.next()
+print g.next()
+
